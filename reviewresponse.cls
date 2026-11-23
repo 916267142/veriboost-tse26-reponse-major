@@ -185,7 +185,7 @@
 	boxrule={\borderthickness},%
 	leftrule={\accentborderthickness},%
 	titlerule={\borderthickness},%
-%	titlerule style={colorcommentbg},%
+	titlerule style={colorcommentbg},%
 	enhanced jigsaw,%
 	label={comment:\arabic{reviewer}.\arabic{revcomment}},
 	#1%
