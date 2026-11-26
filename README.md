@@ -124,14 +124,15 @@ By default, this text is "Concluding Response"; the value of the optional parame
 ### Changes
 
 ```latex
-\begin{changes}
+\begin{changes}[III-A][4 left]
 ...
 \end{changes}
 ```
 
 The `changes` environment is meant for indicating changes that you made to your
 manuscript.
-It sets the content in a box in order to highlight it for the reviewers.
+The optional arguments specify the section and page location in the title.
+Omitted or empty arguments are displayed as blanks.
 
 
 ### Bibliography
@@ -163,8 +164,8 @@ The shown values are the defaults.
 \definecolor{colorcommentframe}{HTML}{005374} % color of the frame and title of the comment box
 \colorlet{colorcommentbg}{colorcommentframe!2} % color of the background of the comment box
 
-\definecolor{colorchangeframe}{HTML}{006622} % color of the frame of the changes box
-\colorlet{colorchangebg}{colorchangeframe!2} % color of the background of the changes box
+\colorlet{colorchangeframe}{gray} % color of the left rule of the changes box
+\colorlet{colorchangebg}{block-gray} % color of the background of the changes box
 
 \colorlet{colorconcludingresponsefg}{black} % color of the title and text in the concluding response box
 \colorlet{colorconcludingresponsebg}{black!1} % color of the background of the concluding response box
@@ -177,8 +178,8 @@ If you want to change the thickness of the borders, you can set
 The following values are the defaults.
 
 ```latex
-\setlength{\borderthickness}{0.75pt}  % border around all boxes
-\setlength{\accentborderthickness}{5pt}  % accent border on the left side of the revcomment and changes boxes
+\setlength{\borderthickness}{0.75pt}  % border around concluding responses
+\setlength{\accentborderthickness}{4pt}  % left rule of the comment and changes boxes
 ```
 
 

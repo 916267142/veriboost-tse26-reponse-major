@@ -63,21 +63,21 @@
 \colorlet{colorcommentfg}{black}
 \definecolor{colorcommentframe}{HTML}{005374}
 \colorlet{colorcommentbg}{colorcommentframe!2}
+\colorlet{block-gray}{black!3}
 
-\definecolor{colorchangeframe}{HTML}{006622}
-\colorlet{colorchangebg}{colorchangeframe!2}
+\colorlet{colorchangeframe}{gray}
+\colorlet{colorchangebg}{block-gray}
 
 \colorlet{colorconcludingresponsefg}{black}
 \colorlet{colorconcludingresponsebg}{black!1}
 \colorlet{colorconcludingresponseframe}{black!20}
-\colorlet{block-gray}{black!3}
 %%%
 
 %%% Spacing and Lengths
 \newlength{\borderthickness}
 \setlength{\borderthickness}{0.75pt}
 \newlength{\accentborderthickness}
-\setlength{\accentborderthickness}{5pt}
+\setlength{\accentborderthickness}{4pt}
 
 %%% Fonts
 \setkomafont{titlehead}{\normalsize\color{black!70}\sffamily}
@@ -161,16 +161,8 @@
 %%%
 
 %%% Blocks %%%
-\tcbset{review comment/.style={
-	fontupper=\itshape,
-	before upper={\textquotedblleft},
-	after upper={\textquotedblright},
-	fonttitle={\bfseries\sffamily},
-	coltitle={colorcommentframe},
-	coltext={colorcommentfg},
-	colback=block-gray,
-	colbacktitle=block-gray,
-	borderline west={4pt}{0pt}{colorcommentframe},
+\tcbset{review block/.style={
+	borderline west={\accentborderthickness}{0pt}{#1},
 	boxrule=0pt,
 	boxsep=0pt,
 	breakable,
@@ -183,10 +175,22 @@
 	right=10pt,
 	top=4pt,
 	bottom=4pt,
+	fontupper={\setlength{\parskip}{0pt}},
+	fonttitle={\bfseries\sffamily},
 	toptitle=4pt,
 	bottomtitle=4pt,
 	titlerule=0.5pt,
 	titlerule style={black!18,shorten <=10pt,shorten >=10pt},
+}}
+
+\tcbset{review comment/.style={
+	review block={colorcommentframe},
+	before upper={\itshape\textquotedblleft},
+	after upper={\textquotedblright},
+	coltitle={colorcommentframe},
+	coltext={colorcommentfg},
+	colback=block-gray,
+	colbacktitle=block-gray,
 }}
 
 \newtcolorbox{generalcomment}{%
@@ -222,13 +226,14 @@
 	enhanced jigsaw,%
 }
 
-\newtcolorbox{changes}{%
+\NewTColorBox{changes}{O{} O{}}{%
+	review block={colorchangeframe},%
 	colback={colorchangebg},%
-	colframe={colorchangeframe},%
-	boxrule={\borderthickness},%
-	leftrule={\accentborderthickness},%
-	breakable,%
-	enhanced jigsaw,%
+	colbacktitle={colorchangebg},%
+	coltitle=black,%
+	adjusted title={\textmd{The revision made in the manuscript} in
+		Section \IfBlankTF{#1}{\rule{2em}{0.4pt}}{#1} on
+		Page \IfBlankTF{#2}{\rule{2em}{0.4pt}}{#2}},%
 }
 
 
