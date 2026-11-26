@@ -160,34 +160,34 @@
 %%%
 
 %%% Blocks %%%
+\tcbset{review comment/.style={
+	fontupper=\itshape,
+	before upper={\textquotedblleft},
+	after upper={\textquotedblright},
+	fonttitle={\bfseries\sffamily},
+	coltitle={colorcommentframe},
+	coltext={colorcommentfg},
+	colback={colorcommentbg},
+	colframe={colorcommentframe},
+	colbacktitle={colorcommentbg},
+	boxrule={\borderthickness},
+	leftrule={\accentborderthickness},
+	titlerule={\borderthickness},
+	titlerule style={colorcommentbg},
+	enhanced jigsaw,
+}}
+
 \newtcolorbox{generalcomment}{%
-	attach title to upper,%
-	after title={.\enskip},%
-	title={General Comments},%
-	fonttitle={\bfseries\sffamily},%
-	coltitle={colorcommentframe},%
-	coltext={colorcommentfg},%
-	colback={colorcommentbg},%
-	colframe={colorcommentframe},%
-	boxrule={\borderthickness},%
+	review comment,%
+	adjusted title={General Comments},%
 	bookmark={General Comments},%
 }
 
 \newtcolorbox[use counter*=revcomment]{revcomment}[1][]{%
+	review comment,%
 	adjusted title={Comment~\therevcomment},%
-	fonttitle={\bfseries\sffamily},%
-	coltitle={colorcommentframe},%
-	coltext={colorcommentfg},
-	colback={colorcommentbg},%
-	colframe={colorcommentframe},%
-	colbacktitle={colorcommentbg},
 	bookmark={Comment \therevcomment},%
-	boxrule={\borderthickness},%
-	leftrule={\accentborderthickness},%
-	titlerule={\borderthickness},%
-	titlerule style={colorcommentbg},%
-	enhanced jigsaw,%
-	label={comment:\arabic{reviewer}.\arabic{revcomment}},
+	label={comment:\arabic{reviewer}.\arabic{revcomment}},%
 	#1%
 }
 
