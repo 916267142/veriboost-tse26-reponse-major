@@ -3,17 +3,26 @@
 \reviewer%
 
 \begin{generalcomment}
-	General comment about the work.
+	This paper presents VeriBoost, 
+	an approach to accelerating fault-tolerance verification in wide-area networks (WANs) by reducing the space of failure scenarios. 
+	VeriBoost combines two techniques: Link Pruning and Link Compression, 
+	and is integrated with SMT-based, simulation-based, and graph-based verifiers. 
+	The evaluation examines 260 real-world WAN topologies and reports verification speedups on datasets with synthesized BGP and OSPF configurations.
 \end{generalcomment}
 \begin{revresponse}[Thank you for your feedback.]
 	We have carefully addressed all the issues item by item as follows.
 \end{revresponse}
 
 \begin{revcomment}
-The verification objective and the SMT constraint concern at most k link failures, 
-but several descriptions of simulation-based verification and Scenario Aggregating refer to selecting exactly $k$ failed links. 
-The example following Definition 1 similarly states that five symbolic links with $k=2$ produce $C(5, 2)=10$ concrete failure scenarios, 
-whereas the stated definition includes $\sum_{i=0}^{2}C(5,i)=16$ scenarios.
+Please resolve the inconsistency between “at most k failures” and “exactly k failures.”
+
+The verification objective and the SMT constraint concern at most k link failures, but several descriptions of simulation-based verification and Scenario Aggregating refer to selecting exactly k failed links. The example following Definition 1 similarly states that five symbolic links with $k=2$ produce C(5, 2)=10 concrete failure scenarios, whereas the stated definition includes
+$\sum_{i=0}^{2}C(5,i)=16$ scenarios.
+
+Checking that a property holds under all scenarios with exactly k link failures is insufficient to establish tolerance to at most k failures, 
+particularly for intents such as waypointing, 
+where additional failures may reroute traffic through the required waypoint. 
+Scenarios with k-1, k-2, \dots, 1 failures must also be checked.
 \end{revcomment}
 \begin{revresponse}
 	We agree that the title is somewhat misleading.
@@ -21,7 +30,12 @@ whereas the stated definition includes $\sum_{i=0}^{2}C(5,i)=16$ scenarios.
 \end{revresponse}
 
 \begin{revcomment}
-	Everything else is really good.
+\textit{
+Please explicitly identify the major extensions over the conference version in the manuscript. 
+Currently, the differences between the journal and conference versions are only outlined in the cover letter. 
+To clarify the article's contributions for a broader audience, 
+the authors should explicitly state in the text that this work extends the conference paper and summarize the primary additions at the end of the Introduction.
+}
 \end{revcomment}
 \begin{revresponse}
 	We totally agree. We also added the following to the new version of the manuscript
@@ -31,15 +45,41 @@ whereas the stated definition includes $\sum_{i=0}^{2}C(5,i)=16$ scenarios.
 \end{revresponse}
 
 \begin{revcomment}[breakable]
-	If we have a\\
-	very long comment\\
-	that spans\\
-	many lines\\
-	we can pass arguments\\
-	to the underlying tcolorbox,\\
-	such as \texttt{breakable}\\
-	to allow breaking up\\
-	the comment box.
+Could Link Pruning and Link Compression also benefit data center networks (DCNs)? 
+Given that DCNs typically exhibit highly regular and symmetric topologies, 
+it would be interesting to discuss whether VeriBoost can provide additional benefits over existing DCN-specific network compression techniques, 
+such as Bonsai and Origami.
+\end{revcomment}
+\begin{revresponse}
+	That is a great feature. Thank you.
+\end{revresponse}
+
+\begin{revcomment}[breakable]
+VeriBoost achieves good acceleration across different network scales and fault-tolerance levels. 
+It would be helpful if the authors could further explain the underlying reasons for these improvements in real-world network scenarios.
+\end{revcomment}
+\begin{revresponse}
+	That is a great feature. Thank you.
+\end{revresponse}
+
+\begin{revcomment}[breakable]
+It seems that the released veriboost-core repository functions as a standalone core library, 
+it must be used in conjunction with the original veriboost repository. 
+The authors should include more complete usage instructions in the paper to clarify this setup.
+\end{revcomment}
+\begin{revresponse}
+	That is a great feature. Thank you.
+\end{revresponse}
+
+\begin{revcomment}[breakable]
+There are several minor grammatical errors and awkward expressions throughout the manuscript. The authors are encouraged to carefully proofread the paper. For example:
+\begin{itemize}
+\item Page 8, Fig. 3: ``steps 3 and 4 are need to be executed” should be "steps 3 and 4 need to be executed".
+\item Page 8, Section IV-A: "The design of VeriBoost, is verifier-agnostic" contains an unnecessary comma.
+\item Page 6, Section III-A: "To speedup fault tolerance verification" should be "To speed up fault-tolerance verification".
+\item Page 15, Section V-F: "Scenario Aggregating effectively address this issue" should be "Scenario Aggregating effectively addresses this issue".
+\item Page 15, Section VI: "in SMT-based, simulation-based, and graph-based method" should use the plural form "methods".
+\end{itemize}
 \end{revcomment}
 \begin{revresponse}
 	That is a great feature. Thank you.

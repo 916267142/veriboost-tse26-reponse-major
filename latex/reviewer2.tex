@@ -3,21 +3,46 @@
 \label{rev:2}
 
 \begin{generalcomment}
-	In general, the work is well-written. However, I have the following concerns.
+	The paper addresses an important issue in network verification: 
+	efficiently verifying that reachability-related properties are satisfied in the presence of arbitrary failures. 
+	The proposed optimization methods—link pruning and link compression—are clearly explained and technically sound under the assumed conditions—notably, 
+	each node is assigned its own autonomous system number (ASN), 
+	and only monotonic routing protocols/features are used.
 \end{generalcomment}
 \begin{revresponse}[Thank you for your feedback.]
 	We have carefully addressed all the issues item by item as follows.
 \end{revresponse}
 
 \begin{revcomment}[label={comment:work-not-good}]
-	The work is not really good.
+However, the paper does not provide sufficient evidence that these requirements hold for wide area networks (WANs). 
+Traditionally, 
+WANs use the interior border gateway protocol (iBGP) for nodes within the WAN and the exterior border gateway protocol (eBGP) on edge routers. 
+With this configuration, 
+all nodes in a WAN have the same ASN and route selection is based on "external" AS path length/characteristics and interior gateway protocol (IGP) metrics. 
+(See "Routing Design in Operational Networks: A Look from the Inside" by Maltz et al. in SIGCOMM 2004 and Section 3.1of [41] for examples.) 
+The paper should include evidence that WANs (operated by ISPs, enterprises, and/or hyperscalers) use eBGP (with private ASNs) internally. 
+Additionally, the paper claims that monotonicity "generally holds in common routing protocols, e.g., BGP" but this is not supported by the references cited ([4], [14], [26], [33]). 
+In particular, Section IX in [33] shows that BGP is monotonic when each AS is represented by a single node, 
+but BGP is non-monotonic when local preferences are used to prefer some routes over others. 
+Likewise, Sections V and VI in [14] discuss BGP features that "preclude efficient route prediction." 
+[26] provides evidence that data center networks typically only use BGP route selection policies that are monotonic, 
+but [26] doesn't say anything about WANs.  Finally, [4] talks about solving the stable paths problem, 
+but it does not assume anything about monotonicity. 
+Again, the paper should include evidence that WANs (operated by ISPs, enterprises, and/or hyperscalers) only use BGP features that are monotonic (e.g., no local preference). 
+Also, the paper makes no mention of other commonly used routing protocols in WANs, such as IS-IS and MPLS (see Section 2.1 of "Achieving high utilization with software-driven WAN" by Hong et al. in SIGCOMM 2013 for an example).
 \end{revcomment}
 \begin{revresponse}
 : (123)
 \end{revresponse}
 
 \begin{revcomment}
-	You forgot to cite a very important reference (where I am an author)!
+Relatedly, the benefits of VeriBoost reported in the evaluation are based purely on synthesized WAN configurations. 
+I agree that "real-world WAN configurations are typically confidential and not publicly available," 
+but there is no evidence that the synthesized configurations used in existing works [7], [13] are representative of real-world WAN configurations. 
+Studies of network routing designs (e.g., "Routing Design in Operational Networks: A Look from the Inside" by Maltz et al. in SIGCOMM 2004) and papers published by operators (e.g., "Accuracy, Scalability, Coverage – A Practical Configuration Verifier on a Global WAN" by Ye et al. in SIGCOMM 2020, 
+and "Achieving High Utilization with Software-Driven WAN" by Hong et al. in SIGCOMM 2013) indicate that actual routing designs are more complex than those synthesized using [12]. 
+At the very least, the paper needs to be clear about the limitations of using simple, synthesized WAN configurations. 
+Ideally, the paper would include some evaluation using configurations from real WANs that are more amenable to data sharing (e.g., Internet2) and/or include features discussed in prior work (e.g., iBGP) in the synthesized configurations.
 \end{revcomment}
 \begin{revresponse}
 	We are aware that citations on Google Scholar are very important to you.
@@ -29,7 +54,9 @@ Also check out our article~\cite{Besser2020}.
 \end{revresponse}
 
 \begin{revcomment}
-	The template you are using for responding to my comments is excellent.
+Section II of the paper provides an excellent overview of existing verification and optimization techniques. 
+However, it should also include discussion of more recent work explicitly targeting verification of WANs: "New Evolution of Hoyan: Enhancing Scalability, Usability, and Accuracy for Alibaba's Global WAN Verification" by Yuan et al. in SIGCOMM 2025, 
+and "A General and Efficient Approach to Verifying Traffic Load Properties under Arbitrary k Failures" by Li et al. in SIGCOMM 2024.
 \end{revcomment}
 \begin{revresponse}
 	We agree.
@@ -43,3 +70,73 @@ Also check out our article~\cite{Besser2020}.
 	It is also possible to set an additional custom label by passing the \texttt{label} option to the comment environment, e.g., \autoref{comment:work-not-good} was mean.
 \end{revresponse}
 
+
+\begin{revcomment}
+Observation I in Section III.A includes spurious information that doesn't address the core observation: 
+"for a given property, many failure scenarios are irrelevant." 
+First, it notes that "local preference is not propagated among different ASes," 
+but that doesn't stop an AS from using local preference to prefer a longer route: e.g., v5 in Figure 1a could prefer the path v6, v8, v7, v2 over the path v3, v2. 
+Second, it states that path3 will never be used "since path2 is a subsequence of path3," but path3 would never even propagated by v4, 
+because it contains a cycle. To make an argument about subsequence, path3 needs to be something like v1, v4, v9, v10, v5, v7, v2. Relatedly, 
+the end of Section III.A states that "we only need to confirm 'the preference of a path does not decrease when prefixed by a link'," 
+but this contradicts one of BGP's core route selection criteria, prefer shorter AS paths.
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+
+	One cool feature is that comments are automatically labeled with the following pattern: \verb|comment:<rev_num>.<comment_num>|, which can then be used in a \verb|\ref|~command.
+	So this comment has number~\ref{comment:2.3}.
+	(Note that this also automatically changes if the \texttt{revnumtocomment} class option is enabled.)
+
+	To automatically add the label in front of the number, we can use \verb|\autoref|: \autoref{comment:2.3}.
+
+	It is also possible to set an additional custom label by passing the \texttt{label} option to the comment environment, e.g., \autoref{comment:work-not-good} was mean.
+\end{revresponse}
+
+\begin{revcomment}
+The API seems like an implementation detail, and not a core component of VeriBoost. 
+If there is something about the API that is noteworthy, 
+this needs to be included in the paper.
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+\end{revresponse}
+
+\begin{revcomment}
+I do not understand the following part of Theorem 3: "if two links l1 and l2 do not contain either both v1 or both v2." 
+Is this essentially saying that links that are incident with v1 and/or v2 cannot be considered for equivalence?
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+\end{revresponse}
+
+\begin{revcomment}
+In Figure 9, consider using a box plot instead of a bar chart that only shows the average.
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+\end{revresponse}
+
+\begin{revcomment}
+The claims that "VeriBoost accelerates Minesweeper by 2x to 47x" and "Batfish by up to 69x" are a bit misleading, 
+because the 47x and 69x see to only occur for the Lat topology. Based on Figures 8, 10, 11, and 13, 
+it seems more accurate to report that VeriBoost accelerates Minesweeper and Batfish by 2x to about 10x, 
+with one particular topology achieving 47x and 69x acceleration.
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+\end{revresponse}
+
+\begin{revcomment}
+The axis on Figure 16 is labeled us (microseconds) but the description of the figure says ms (milliseconds).
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+\end{revresponse}
+
+\begin{revcomment}
+It is not clear that TSE is the right venue for this work. It is much more a paper about networks and graphs than software.
+\end{revcomment}
+\begin{revresponse}
+	We agree.
+\end{revresponse}

@@ -1,7 +1,21 @@
 \reviewer%
 
+\begin{generalcomment}
+	This paper proposes VeriBoost, 
+	a general acceleration approach for fault-tolerance verification in wide-area networks. 
+	By employing link pruning and link compression, 
+	the proposed method reduces the failure scenario space and improves the efficiency of various network verifiers. 
+	The paper demonstrates certain practical value; 
+	however, several concerns remain regarding its novelty, applicability, and experimental evaluation. 
+	Major revision is recommended. The specific comments are as follows:
+\end{generalcomment}
+\begin{revresponse}[Thank you for your feedback.]
+	We have carefully addressed all the issues item by item as follows.
+\end{revresponse}
+
 \begin{revcomment}
-	Did you know, that the references can be separated for the individual reviewers?
+	The proposed method mainly relies on existing graph-theoretic techniques for link pruning and compression. 
+	The authors should further clarify its key innovations and theoretical contributions compared with existing network verification acceleration methods.
 \end{revcomment}
 \begin{revresponse}
 	Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use the \texttt{refsection=section} option to achieve that.
@@ -10,6 +24,65 @@
 	Note that you might have to run \texttt{pdflatex} and \texttt{biber} multiple times.
 
 	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
-
-	\printpartbibliography{Besser2021,ReviewerReference}
+	% \printpartbibliography{Besser2021,ReviewerReference}
 \end{revresponse}
+
+\begin{revcomment}
+	The link compression method relies on specific topology structures and routing protocol assumptions. 
+	The authors should further discuss the applicability of these assumptions in complex real-world WANs and their impact on the effectiveness of the proposed method.
+\end{revcomment}
+\begin{revresponse}
+	Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use the \texttt{refsection=section} option to achieve that.
+	If we cite a new reference like \cite{Besser2021} here, it will again be number [1].
+
+	Note that you might have to run \texttt{pdflatex} and \texttt{biber} multiple times.
+
+	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
+	% \printpartbibliography{Besser2021,ReviewerReference}
+\end{revresponse}
+
+\begin{revcomment}
+	Fault-tolerance verification is defined to cover scenarios with up to k link failures, 
+	while some experimental analyses only consider combinations with exactly k failed links. 
+	The authors should clarify whether all relevant failure scenarios are fully covered.
+\end{revcomment}
+\begin{revresponse}
+	Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use the \texttt{refsection=section} option to achieve that.
+	If we cite a new reference like \cite{Besser2021} here, it will again be number [1].
+
+	Note that you might have to run \texttt{pdflatex} and \texttt{biber} multiple times.
+
+	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
+	% \printpartbibliography{Besser2021,ReviewerReference}
+\end{revresponse}
+
+\begin{revcomment}
+	The experiments mainly use real network topologies with synthetic routing configurations. 
+	The lack of evaluation using real-world complex routing configurations limits the evidence supporting the practical applicability of the proposed method.
+\end{revcomment}
+\begin{revresponse}
+	Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use the \texttt{refsection=section} option to achieve that.
+	If we cite a new reference like \cite{Besser2021} here, it will again be number [1].
+
+	Note that you might have to run \texttt{pdflatex} and \texttt{biber} multiple times.
+
+	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
+	% \printpartbibliography{Besser2021,ReviewerReference}
+\end{revresponse}
+
+\begin{revcomment}
+	The paper emphasizes the maximum speedup achieved, but provides insufficient performance analysis for networks with low link reduction ratios. A more comprehensive evaluation is needed to assess the actual acceleration benefits under different network conditions.
+\end{revcomment}
+\begin{revresponse}
+	Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use the \texttt{refsection=section} option to achieve that.
+	If we cite a new reference like \cite{Besser2021} here, it will again be number [1].
+
+	Note that you might have to run \texttt{pdflatex} and \texttt{biber} multiple times.
+
+	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
+	% \printpartbibliography{Besser2021,ReviewerReference}
+\end{revresponse}
+
+\begin{changes}
+	tasdfjopliasfhjokasijhf
+\end{changes}
