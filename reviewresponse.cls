@@ -70,6 +70,7 @@
 \colorlet{colorconcludingresponsefg}{black}
 \colorlet{colorconcludingresponsebg}{black!1}
 \colorlet{colorconcludingresponseframe}{black!20}
+\colorlet{block-gray}{black!3}
 %%%
 
 %%% Spacing and Lengths
@@ -167,14 +168,25 @@
 	fonttitle={\bfseries\sffamily},
 	coltitle={colorcommentframe},
 	coltext={colorcommentfg},
-	colback={colorcommentbg},
-	colframe={colorcommentframe},
-	colbacktitle={colorcommentbg},
-	boxrule={\borderthickness},
-	leftrule={\accentborderthickness},
-	titlerule={\borderthickness},
-	titlerule style={colorcommentbg},
-	enhanced jigsaw,
+	colback=block-gray,
+	colbacktitle=block-gray,
+	borderline west={4pt}{0pt}{colorcommentframe},
+	boxrule=0pt,
+	boxsep=0pt,
+	breakable,
+	enhanced,
+	frame hidden,
+	left skip=0pt,
+	parbox=false,
+	sharp corners,
+	left=10pt,
+	right=10pt,
+	top=4pt,
+	bottom=4pt,
+	toptitle=4pt,
+	bottomtitle=4pt,
+	titlerule=0.5pt,
+	titlerule style={black!18,shorten <=10pt,shorten >=10pt},
 }}
 
 \newtcolorbox{generalcomment}{%
