@@ -81,9 +81,16 @@
 
 	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
 	% \printpartbibliography{Besser2021,ReviewerReference}
-\end{revresponse}
 
 \begin{changes}[III-A][4 left]
+	\begin{add}
+asdsdfasfsdfaf
+\end{add}
+
+\begin{remove}
+dasffafdasfasdf
+\end{remove}
+
 Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use the \texttt{refsection=section} option to achieve that.
 	If we cite a new reference like \cite{Besser2021} here, it will again be number [1].
 
@@ -92,3 +99,5 @@ Yes. When using \href{https://www.ctan.org/pkg/biblatex}{biblatex}, you can use 
 	And reference [1] for \autoref{rev:2}~\cite{ReviewerReference} is now number [2].
 
 \end{changes}
+\end{revresponse}
+

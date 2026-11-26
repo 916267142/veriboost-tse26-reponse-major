@@ -134,6 +134,17 @@ manuscript.
 The optional arguments specify the section and page location in the title.
 Omitted or empty arguments are displayed as blanks.
 
+Use `add` for blue text and `remove` for red text with a red strikethrough.
+
+```latex
+\begin{add}
+Added text.
+\end{add}
+\begin{remove}
+Removed text.
+\end{remove}
+```
+
 
 ### Bibliography
 The `reviewresponse` package supports the use of `biblatex` for references.

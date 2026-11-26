@@ -41,6 +41,7 @@
 
 \RequirePackage[breakable,skins]{tcolorbox}
 \RequirePackage{xcolor}
+\RequirePackage[normalem]{ulem}
 
 
 \newcommand*{\journal}[1]{\renewcommand*{\@journal}{#1}}
@@ -235,6 +236,28 @@
 		Section \IfBlankTF{#1}{\rule{2em}{0.4pt}}{#1} on
 		Page \IfBlankTF{#2}{\rule{2em}{0.4pt}}{#2}},%
 }
+
+\newenvironment{add}{\color{blue}}{}
+
+\ExplSyntaxOn
+\seq_new:N \l__reviewresponse_removed_paragraphs_seq
+\NewDocumentEnvironment{remove}{+b}
+  {
+    \color{red}
+    \seq_set_split:Nnn \l__reviewresponse_removed_paragraphs_seq {\par} {#1}
+    \seq_map_indexed_inline:Nn \l__reviewresponse_removed_paragraphs_seq
+      {
+        \int_compare:nNnT {##1} > {1} {\par}
+        \tl_if_blank:nF {##2}
+          {
+            \bgroup
+            \markoverwith{\textcolor{red}{\rule[.55ex]{2pt}{.4pt}}}
+            \ULon{##2}
+          }
+      }
+  }
+  {}
+\ExplSyntaxOff
 
 
 %%% Hyperref Settings
