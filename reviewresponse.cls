@@ -99,7 +99,7 @@
 %%% Counters
 \newcounter{reviewer}
 \setcounter{reviewer}{0}
-\providecommand*{\reviewerautorefname}{Reviewer}
+\providecommand*{\reviewerautorefname}{\textcolor{black}{Reviewer}}
 
 \newcounter{revcomment}
 \ifreviewresponse@revnumtocomment%
@@ -107,7 +107,7 @@
 \else%
 \counterwithin*{revcomment}{reviewer}
 \fi
-\providecommand*{\revcommentautorefname}{Comment}
+\providecommand*{\revcommentautorefname}{\textcolor{black}{Comment}}
 %%%
 
 %%% Commands
@@ -264,6 +264,10 @@
 \AddToHook{package/hyperref/after}{
 	\hypersetup{
 		bookmarksopen,
+		colorlinks=true,
+		linkcolor=blue,
+		citecolor=blue,
+		urlcolor=black,
 		pdfcreator={LaTeX with the reviewresponse package},
 	}
 }
@@ -280,4 +284,4 @@
 		\endgroup
 	}{}
 }
-\AddToHook{begindocument/end}{\def\sectionautorefname{Reviewer}}
+\AddToHook{begindocument/end}{\def\sectionautorefname{\reviewerautorefname}}
