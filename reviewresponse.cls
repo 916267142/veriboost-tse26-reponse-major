@@ -243,7 +243,7 @@
 \seq_new:N \l__reviewresponse_removed_paragraphs_seq
 \NewDocumentEnvironment{remove}{+b}
   {
-    \color{red}
+    \color{gray}
     \seq_set_split:Nnn \l__reviewresponse_removed_paragraphs_seq {\par} {#1}
     \seq_map_indexed_inline:Nn \l__reviewresponse_removed_paragraphs_seq
       {
@@ -251,7 +251,7 @@
         \tl_if_blank:nF {##2}
           {
             \bgroup
-            \markoverwith{\textcolor{red}{\rule[.55ex]{2pt}{.4pt}}}
+            \markoverwith{\textcolor{gray}{\rule[.55ex]{2pt}{.4pt}}}
             \ULon{##2}
           }
       }

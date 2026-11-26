@@ -134,7 +134,7 @@ manuscript.
 The optional arguments specify the section and page location in the title.
 Omitted or empty arguments are displayed as blanks.
 
-Use `add` for blue text and `remove` for red text with a red strikethrough.
+Use `add` for blue text and `remove` for gray text with a gray strikethrough.
 
 ```latex
 \begin{add}
