@@ -5,11 +5,13 @@
 \usepackage[babel]{microtype}
 \usepackage[babel]{csquotes}
 
-%% Fonts
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-%\usepackage{newcent} % different font
-%\usepackage[scaled]{beramono} % different monospace font
+%% Fonts 
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}
+\setmathfont{TeX Gyre Termes Math}
 
 %% Bibliography
 \usepackage[backend=biber,style=ieee,dashed=false,url=false,isbn=false,defernumbers=true,refsection=section]{biblatex}
