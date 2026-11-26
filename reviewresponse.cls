@@ -285,3 +285,14 @@
 	}{}
 }
 \AddToHook{begindocument/end}{\def\sectionautorefname{\reviewerautorefname}}
+
+\colorlet{colorcommentfg}{black}  % color of the text in the comment box
+\definecolor{colorcommentframe}{HTML}{005374} % color of the frame and title of the comment box
+\colorlet{colorcommentbg}{colorcommentframe!2} % color of the background of the comment box
+
+\colorlet{colorchangeframe}{gray} % color of the left rule of the changes box
+\colorlet{colorchangebg}{block-gray} % color of the background of the changes box
+
+\colorlet{colorconcludingresponsefg}{black} % color of the title and text in the concluding response box
+\colorlet{colorconcludingresponsebg}{black!1} % color of the background of the concluding response box
+\colorlet{colorconcludingresponseframe}{black!20} % color of the frame of the concluding response box

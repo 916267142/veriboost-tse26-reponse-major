@@ -17,18 +17,8 @@
 \usepackage[backend=biber,style=ieee,dashed=false,url=false,isbn=false,defernumbers=true,refsection=section]{biblatex}
 \bibliography{literature.bib}
 
+\usepackage{enumitem}
 \usepackage{hyperref}
-
-\colorlet{colorcommentfg}{black}  % color of the text in the comment box
-\definecolor{colorcommentframe}{HTML}{005374} % color of the frame and title of the comment box
-\colorlet{colorcommentbg}{colorcommentframe!2} % color of the background of the comment box
-
-\colorlet{colorchangeframe}{gray} % color of the left rule of the changes box
-\colorlet{colorchangebg}{block-gray} % color of the background of the changes box
-
-\colorlet{colorconcludingresponsefg}{black} % color of the title and text in the concluding response box
-\colorlet{colorconcludingresponsebg}{black!1} % color of the background of the concluding response box
-\colorlet{colorconcludingresponseframe}{black!20} % color of the frame of the concluding response box
 
 \title{A General Acceleration Approach for Fault-Tolerance Verification in Wide-Area Networks}
 \author{Ning Kang, Peng Zhang, Hao Li, and Jianyuan Zhang}
@@ -42,11 +32,11 @@
 % }
 \journal{IEEE Transactions on Software Engineering}
 \manuscript{TSE-2026-09-0927}
-\editorname{Dr.Doom}
+\editorname{Elvira}
 
 \begin{document}
 \maketitle
-\input{latex/cover_letter.tex}
+{\setstretch{1.05}\input{latex/cover_letter.tex}\par}
 \input{latex/editor.tex}
 \input{latex/reviewer1.tex}
 \input{latex/reviewer2.tex}
